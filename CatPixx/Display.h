@@ -10,8 +10,12 @@
 
 @interface Display : NSObject
 
-@property CGDirectDisplayID DisplayID;
+@property (readonly) CGDirectDisplayID displayID;
+@property (readonly) io_service_t displayPort;
+@property (readonly) NSString name;
 
-- (id)initWithID:(CGDirectDisplayID)DisplayID;
++ (NSArray*)getCurrentDisplayList;
+
+- (id)initWithID:(CGDirectDisplayID)displayID;
 
 @end
