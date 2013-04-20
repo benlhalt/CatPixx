@@ -7,12 +7,11 @@
 //
 
 #import "Display.h"
+#import "IOKit/graphics/IOGraphicsLib.h"
 
 @implementation Display
 
 @synthesize displayID = _displayID;
-@synthesize displayPort = _displayPort;
-@synthesize name = _name;
 
 + (NSArray*)getCurrentDisplayList {
     
@@ -43,30 +42,29 @@
     self = [super init];
     if (self) {
         _displayID = displayID;
-        
-        // Get the service port for the display
-        _displayPort = CGDisplayIOServicePort(displayID);
-        
-        
-        CFTypeRef typeCode;
-        //http://stackoverflow.com/questions/1236498/how-to-get-the-display-name-with-the-display-id-in-mac-os-x
-        // Ask IOKit for the VRAM size property
-        typeCode = IORegistryEntryCreateCFProperty(displayPorts[i],
-                                                   CFSTR(kIOFBMemorySizeKey),
-                                                   kCFAllocatorDefault,
-                                                   kNilOptions);
-        
-        // Ensure we have valid data from IOKit
-        if(typeCode && CFGetTypeID(typeCode) == CFNumberGetTypeID())
-        {
-            // If so, convert the CFNumber into a plain unsigned long
-            CFNumberGetValue(typeCode, kCFNumberSInt32Type, vsArray[i]);
-            if(typeCode)
-                CFRelease(typeCode);
-        }
-
     }
     return self;
+}
+
+- (NSString *)name {
+    
+    NSString *screenName = nil;
+    
+    NSDictionary *localizedNames = [self.displayInfo objectForKey:[NSString stringWithUTF8String:kDisplayProductName]];
+    
+    if ([localizedNames count] > 0) {
+    	screenName = [localizedNames objectForKey:[[localizedNames allKeys] objectAtIndex:0]];
+    }
+    
+    return screenName;
+}
+
+- (io_service_t)displayPort {
+    return CGDisplayIOServicePort(_displayID);
+}
+
+- (NSDictionary *)displayInfo {
+    return (NSDictionary *)CFBridgingRelease(IODisplayCreateInfoDictionary(self.displayPort, kIODisplayOnlyPreferredName));
 }
 
 @end

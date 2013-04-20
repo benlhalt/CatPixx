@@ -12,7 +12,8 @@
 
 @property (readonly) CGDirectDisplayID displayID;
 @property (readonly) io_service_t displayPort;
-@property (readonly) NSString name;
+@property (readonly) NSDictionary *displayInfo;
+@property (readonly) NSString *name;
 
 + (NSArray*)getCurrentDisplayList;
 

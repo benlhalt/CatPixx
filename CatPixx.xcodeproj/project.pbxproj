@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A54569B1721E4F600F57690 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A54569A1721E4F600F57690 /* IOKit.framework */; };
 		1A5696EC172073F5009FFE5B /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A5696EB172073F5009FFE5B /* Cocoa.framework */; };
 		1A5696F6172073F5009FFE5B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1A5696F4172073F5009FFE5B /* InfoPlist.strings */; };
 		1A5696F8172073F5009FFE5B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5696F7172073F5009FFE5B /* main.m */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1A54569A1721E4F600F57690 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		1A5696E8172073F5009FFE5B /* CatPixx.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CatPixx.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A5696EB172073F5009FFE5B /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		1A5696EE172073F5009FFE5B /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -39,6 +41,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A54569B1721E4F600F57690 /* IOKit.framework in Frameworks */,
 				1A5696EC172073F5009FFE5B /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -49,6 +52,7 @@
 		1A5696DF172073F5009FFE5B = {
 			isa = PBXGroup;
 			children = (
+				1A54569A1721E4F600F57690 /* IOKit.framework */,
 				1A5696F1172073F5009FFE5B /* CatPixx */,
 				1A5696EA172073F5009FFE5B /* Frameworks */,
 				1A5696E9172073F5009FFE5B /* Products */,
@@ -309,6 +313,7 @@
 				1A569707172073F5009FFE5B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

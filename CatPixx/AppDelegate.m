@@ -7,12 +7,13 @@
 //
 
 #import "AppDelegate.h"
-
+#import "Display.h"
 @implementation AppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     // Insert code here to initialize your application
+    NSArray *displays = [Display getCurrentDisplayList];
 }
 
 @end
