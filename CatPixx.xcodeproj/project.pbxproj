@@ -55,8 +55,6 @@
 		1A5696DF172073F5009FFE5B = {
 			isa = PBXGroup;
 			children = (
-				1A8D3C0B1725F11100FDA42B /* OpenGL.framework */,
-				1A54569A1721E4F600F57690 /* IOKit.framework */,
 				1A5696F1172073F5009FFE5B /* CatPixx */,
 				1A5696EA172073F5009FFE5B /* Frameworks */,
 				1A5696E9172073F5009FFE5B /* Products */,
@@ -74,6 +72,8 @@
 		1A5696EA172073F5009FFE5B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1A54569A1721E4F600F57690 /* IOKit.framework */,
+				1A8D3C0B1725F11100FDA42B /* OpenGL.framework */,
 				1A5696EB172073F5009FFE5B /* Cocoa.framework */,
 				1A5696ED172073F5009FFE5B /* Other Frameworks */,
 			);
@@ -282,6 +282,7 @@
 				GCC_PREFIX_HEADER = "CatPixx/CatPixx-Prefix.pch";
 				INFOPLIST_FILE = "CatPixx/CatPixx-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -294,6 +295,7 @@
 				GCC_PREFIX_HEADER = "CatPixx/CatPixx-Prefix.pch";
 				INFOPLIST_FILE = "CatPixx/CatPixx-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

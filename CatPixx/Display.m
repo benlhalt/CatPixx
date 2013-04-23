@@ -12,6 +12,7 @@
 @implementation Display
 
 @synthesize displayID = _displayID;
+@synthesize screen = _screen;
 
 + (NSArray*)getCurrentDisplayList {
     
@@ -57,6 +58,10 @@
     }
     
     return screenName;
+}
+
+- (NSScreen *)screen {
+    return _screen;
 }
 
 - (io_service_t)displayPort {

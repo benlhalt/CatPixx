@@ -14,6 +14,7 @@
 @property (readonly) io_service_t displayPort;
 @property (readonly) NSDictionary *displayInfo;
 @property (readonly) NSString *name;
+@property (readonly) NSScreen *screen;
 
 + (NSArray*)getCurrentDisplayList;
 
