@@ -15,6 +15,7 @@
 		1A5696FF172073F5009FFE5B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5696FE172073F5009FFE5B /* AppDelegate.m */; };
 		1A569702172073F5009FFE5B /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A569700172073F5009FFE5B /* MainMenu.xib */; };
 		1A56970A172092D9009FFE5B /* Display.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A569709172092D9009FFE5B /* Display.m */; };
+		1A8D3C0C1725F11100FDA42B /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A8D3C0B1725F11100FDA42B /* OpenGL.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		1A569701172073F5009FFE5B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		1A569708172092D9009FFE5B /* Display.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Display.h; sourceTree = "<group>"; };
 		1A569709172092D9009FFE5B /* Display.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Display.m; sourceTree = "<group>"; };
+		1A8D3C0B1725F11100FDA42B /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +43,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A8D3C0C1725F11100FDA42B /* OpenGL.framework in Frameworks */,
 				1A54569B1721E4F600F57690 /* IOKit.framework in Frameworks */,
 				1A5696EC172073F5009FFE5B /* Cocoa.framework in Frameworks */,
 			);
@@ -52,6 +55,7 @@
 		1A5696DF172073F5009FFE5B = {
 			isa = PBXGroup;
 			children = (
+				1A8D3C0B1725F11100FDA42B /* OpenGL.framework */,
 				1A54569A1721E4F600F57690 /* IOKit.framework */,
 				1A5696F1172073F5009FFE5B /* CatPixx */,
 				1A5696EA172073F5009FFE5B /* Frameworks */,

@@ -12,4 +12,6 @@
 
 @property (assign) IBOutlet NSWindow *window;
 
++ (NSOpenGLPixelFormat *)getPixelFormat:(CGDirectDisplayID)displayID;
+
 @end
