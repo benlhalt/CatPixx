@@ -18,6 +18,6 @@
 
 + (NSArray*)getCurrentDisplayList;
 
-- (id)initWithID:(CGDirectDisplayID)displayID;
+- (id)initWithNSScreen:(NSScreen*)screen;
 
 @end

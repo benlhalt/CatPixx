@@ -16,33 +16,23 @@
 
 + (NSArray*)getCurrentDisplayList {
     
-    CGError error = CGDisplayNoErr;
-    CGDirectDisplayID *displayIDs = NULL;
-    uint32_t displayCount = 0;
-    
-    // How many active displays do we have?
-    error = CGGetActiveDisplayList(0, NULL, &displayCount);
-    
-    // Allocate enough memory to hold all the display IDs we have
-    displayIDs = calloc((size_t)displayCount, sizeof(CGDirectDisplayID));
-    
     // Get the list of active displays
-    error = CGGetActiveDisplayList(displayCount, displayIDs, &displayCount);
-    
-    NSMutableArray *displays = [NSMutableArray arrayWithCapacity:(NSUInteger)displayCount];
+    NSArray *screens = [NSScreen screens];
+    NSMutableArray *displays = [NSMutableArray arrayWithCapacity:[screens count]];
     
     // Create Displays and append to array
-    for(int i = 0; i < displayCount; i++) {
-        [displays addObject:[[Display alloc] initWithID:displayIDs[i]]];
+    for(NSScreen *screen in screens) {
+        [displays addObject:[[Display alloc] initWithNSScreen:screen]];
     }
     
     return displays;
 }
 
-- (id)initWithID:(CGDirectDisplayID)displayID {
+- (id)initWithNSScreen:(NSScreen*)screen {
     self = [super init];
     if (self) {
-        _displayID = displayID;
+        _screen = screen;
+        _displayID = (CGDirectDisplayID)[[screen deviceDescription] valueForKey:@"NSSCreenNumber"];
     }
     return self;
 }

@@ -7,11 +7,13 @@
 //
 
 #import <Cocoa/Cocoa.h>
+@class Display;
+@class StimulusView;
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 
 @property (assign) IBOutlet NSWindow *window;
-
-+ (NSOpenGLPixelFormat *)getPixelFormat:(CGDirectDisplayID)displayID;
+@property NSWindow *fullScreenWindow;
+@property StimulusView *view;
 
 @end

@@ -16,6 +16,8 @@
 		1A569702172073F5009FFE5B /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A569700172073F5009FFE5B /* MainMenu.xib */; };
 		1A56970A172092D9009FFE5B /* Display.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A569709172092D9009FFE5B /* Display.m */; };
 		1A8D3C0C1725F11100FDA42B /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A8D3C0B1725F11100FDA42B /* OpenGL.framework */; };
+		1A93A89617279D1A00C1463C /* StimulusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A93A89517279D1A00C1463C /* StimulusView.m */; };
+		1AA83C421727AC4D00663714 /* CatPixx.icns in Resources */ = {isa = PBXBuildFile; fileRef = 1AA83C411727AC4C00663714 /* CatPixx.icns */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +38,9 @@
 		1A569708172092D9009FFE5B /* Display.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Display.h; sourceTree = "<group>"; };
 		1A569709172092D9009FFE5B /* Display.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Display.m; sourceTree = "<group>"; };
 		1A8D3C0B1725F11100FDA42B /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		1A93A89417279D1A00C1463C /* StimulusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StimulusView.h; sourceTree = "<group>"; };
+		1A93A89517279D1A00C1463C /* StimulusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StimulusView.m; sourceTree = "<group>"; };
+		1AA83C411727AC4C00663714 /* CatPixx.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = CatPixx.icns; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +100,8 @@
 			children = (
 				1A5696FD172073F5009FFE5B /* AppDelegate.h */,
 				1A5696FE172073F5009FFE5B /* AppDelegate.m */,
+				1A93A89417279D1A00C1463C /* StimulusView.h */,
+				1A93A89517279D1A00C1463C /* StimulusView.m */,
 				1A569700172073F5009FFE5B /* MainMenu.xib */,
 				1A5696F2172073F5009FFE5B /* Supporting Files */,
 				1A569708172092D9009FFE5B /* Display.h */,
@@ -106,6 +113,7 @@
 		1A5696F2172073F5009FFE5B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				1AA83C411727AC4C00663714 /* CatPixx.icns */,
 				1A5696F3172073F5009FFE5B /* CatPixx-Info.plist */,
 				1A5696F4172073F5009FFE5B /* InfoPlist.strings */,
 				1A5696F7172073F5009FFE5B /* main.m */,
@@ -169,6 +177,7 @@
 				1A5696F6172073F5009FFE5B /* InfoPlist.strings in Resources */,
 				1A5696FC172073F5009FFE5B /* Credits.rtf in Resources */,
 				1A569702172073F5009FFE5B /* MainMenu.xib in Resources */,
+				1AA83C421727AC4D00663714 /* CatPixx.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -182,6 +191,7 @@
 				1A5696F8172073F5009FFE5B /* main.m in Sources */,
 				1A5696FF172073F5009FFE5B /* AppDelegate.m in Sources */,
 				1A56970A172092D9009FFE5B /* Display.m in Sources */,
+				1A93A89617279D1A00C1463C /* StimulusView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
