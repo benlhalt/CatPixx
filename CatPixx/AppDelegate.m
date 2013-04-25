@@ -15,7 +15,7 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // Insert code here to initialize your application
     NSArray *displays = [Display getCurrentDisplayList];
-    Display *display = [displays objectAtIndex:0];
+    Display *display = [displays objectAtIndex:1];
     NSLog(@"%@", display.name);
     NSRect mainDisplayRect = [display.screen frame];
     NSLog(@"x %g, y %g, w %g, h %g", mainDisplayRect.origin.x, mainDisplayRect.origin.y, mainDisplayRect.size.width,mainDisplayRect.size.height);

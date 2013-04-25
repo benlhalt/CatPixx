@@ -6,8 +6,19 @@
 //  Copyright (c) 2013 Ben Halterman. All rights reserved.
 //
 
+
 #import "StimulusView.h"
 #import "Display.h"
+
+static CVReturn stimulusDisplayLinkCallback( CVDisplayLinkRef displayLink,
+                                     const CVTimeStamp *inNow,
+                                     const CVTimeStamp *inOutputTime,
+                                     CVOptionFlags flagsIn,
+                                     CVOptionFlags *flagsOut,
+                                     void *displayLinkContext ) {
+    StimulusView *view = (__bridge StimulusView *)displayLinkContext;
+    return [view drawFrameForTime:inOutputTime];
+}
 
 @implementation StimulusView
 
@@ -18,10 +29,24 @@
     self = [super initWithFrame:display.screen.frame pixelFormat:[self defaultPixelFormat]];
     if (self) {
         _display = display;
-        
+        CVReturn error = CVDisplayLinkCreateWithCGDisplay(display.displayID, &displayLink);
+        if(error) {
+            NSLog(@"DisplayLink created with error:%d", error);
+            displayLink = NULL;
+        } else {
+            
+            error = CVDisplayLinkSetOutputCallback(displayLink, stimulusDisplayLinkCallback, (__bridge void *)(self));
+        }
     }
-    
+    CVDisplayLinkStart(displayLink);
     return self;
+}
+
+- (CVReturn) drawFrameForTime:(const CVTimeStamp *)outputTime {
+   // currentFrame = [self.stimulus.getFrameForTime:outputTime];
+    [self drawRect:NSZeroRect];
+    NSLog(@"called");
+    return kCVReturnSuccess;
 }
 
 - (void)drawRect:(NSRect)dirtyRect

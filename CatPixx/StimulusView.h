@@ -10,11 +10,22 @@
 
 @class Display;
 
-@interface StimulusView : NSOpenGLView
+@interface StimulusView : NSOpenGLView {
+    NSRecursiveLock *lock;
+    CVDisplayLinkRef displayLink;
+    CVImageBufferRef currentFrame;
+    
+    int frameCount;
+    int frameRate;
+    CVTimeStamp frameCountTimeStamp;
+    double timebaseRatio;
+}
 
 @property (weak, readonly) Display *display;
 
 - (id) initWithDisplay:(Display *)display;
+
+- (CVReturn) drawFrameForTime:(const CVTimeStamp *)outputTime;
 
 - (NSOpenGLPixelFormat *)defaultPixelFormat;
 

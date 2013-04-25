@@ -15,6 +15,7 @@
 		1A5696FF172073F5009FFE5B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5696FE172073F5009FFE5B /* AppDelegate.m */; };
 		1A569702172073F5009FFE5B /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A569700172073F5009FFE5B /* MainMenu.xib */; };
 		1A56970A172092D9009FFE5B /* Display.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A569709172092D9009FFE5B /* Display.m */; };
+		1A76F17C1729CCB9007DE79F /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A76F17B1729CCB9007DE79F /* CoreVideo.framework */; };
 		1A8D3C0C1725F11100FDA42B /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A8D3C0B1725F11100FDA42B /* OpenGL.framework */; };
 		1A93A89617279D1A00C1463C /* StimulusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A93A89517279D1A00C1463C /* StimulusView.m */; };
 		1AA83C421727AC4D00663714 /* CatPixx.icns in Resources */ = {isa = PBXBuildFile; fileRef = 1AA83C411727AC4C00663714 /* CatPixx.icns */; };
@@ -37,6 +38,7 @@
 		1A569701172073F5009FFE5B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		1A569708172092D9009FFE5B /* Display.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Display.h; sourceTree = "<group>"; };
 		1A569709172092D9009FFE5B /* Display.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Display.m; sourceTree = "<group>"; };
+		1A76F17B1729CCB9007DE79F /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		1A8D3C0B1725F11100FDA42B /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		1A93A89417279D1A00C1463C /* StimulusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StimulusView.h; sourceTree = "<group>"; };
 		1A93A89517279D1A00C1463C /* StimulusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StimulusView.m; sourceTree = "<group>"; };
@@ -48,6 +50,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A76F17C1729CCB9007DE79F /* CoreVideo.framework in Frameworks */,
 				1A8D3C0C1725F11100FDA42B /* OpenGL.framework in Frameworks */,
 				1A54569B1721E4F600F57690 /* IOKit.framework in Frameworks */,
 				1A5696EC172073F5009FFE5B /* Cocoa.framework in Frameworks */,
@@ -77,6 +80,7 @@
 		1A5696EA172073F5009FFE5B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1A76F17B1729CCB9007DE79F /* CoreVideo.framework */,
 				1A54569A1721E4F600F57690 /* IOKit.framework */,
 				1A8D3C0B1725F11100FDA42B /* OpenGL.framework */,
 				1A5696EB172073F5009FFE5B /* Cocoa.framework */,
