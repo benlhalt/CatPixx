@@ -9,11 +9,18 @@
 #import <Cocoa/Cocoa.h>
 @class Display;
 @class StimulusView;
+@class GLShader;
+@class GLProgram;
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 
 @property (assign) IBOutlet NSWindow *window;
-@property NSWindow *fullScreenWindow;
-@property StimulusView *view;
+@property (strong) NSWindow *fullScreenWindow;
+@property (strong) StimulusView *view;
+@property (strong) GLProgram *program;
+@property (strong) GLShader *vshader;
+@property (strong) GLShader *fshader;
+@property (weak) IBOutlet NSButton *showStimulusButton;
+- (IBAction)showStimulus:(id)sender;
 
 @end

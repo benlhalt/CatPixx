@@ -9,24 +9,26 @@
 #import <Cocoa/Cocoa.h>
 
 @class Display;
+@class GLProgram;
 
 @interface StimulusView : NSOpenGLView {
-    NSRecursiveLock *lock;
     CVDisplayLinkRef displayLink;
-    CVImageBufferRef currentFrame;
-    
-    int frameCount;
-    int frameRate;
-    CVTimeStamp frameCountTimeStamp;
-    double timebaseRatio;
+    GLfloat screenRatio;
+    GLuint displayListID;
 }
 
 @property (weak, readonly) Display *display;
 
-- (id) initWithDisplay:(Display *)display;
+- (id)initWithDisplay:(Display *)display;
+
+- (void)startDisplayLink;
+
+- (void)makeDisplayList;
 
 - (CVReturn) drawFrameForTime:(const CVTimeStamp *)outputTime;
 
 - (NSOpenGLPixelFormat *)defaultPixelFormat;
+
+- (void)useProgram:(GLProgram *)program;
 
 @end

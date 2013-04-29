@@ -8,16 +8,21 @@
 
 
 #import "StimulusView.h"
+#import "GLProgram.h"
 #import "Display.h"
 
 static CVReturn stimulusDisplayLinkCallback( CVDisplayLinkRef displayLink,
-                                     const CVTimeStamp *inNow,
-                                     const CVTimeStamp *inOutputTime,
-                                     CVOptionFlags flagsIn,
-                                     CVOptionFlags *flagsOut,
-                                     void *displayLinkContext ) {
-    StimulusView *view = (__bridge StimulusView *)displayLinkContext;
-    return [view drawFrameForTime:inOutputTime];
+                                             const CVTimeStamp *inNow,
+                                             const CVTimeStamp *inOutputTime,
+                                             CVOptionFlags flagsIn,
+                                             CVOptionFlags *flagsOut,
+                                             void *displayLinkContext ) {
+    CVReturn result = kCVReturnError;
+    @autoreleasepool {
+        StimulusView *view = (__bridge StimulusView *)displayLinkContext;
+        result = [view drawFrameForTime:inOutputTime];
+    }
+    return result;
 }
 
 @implementation StimulusView
@@ -29,40 +34,68 @@ static CVReturn stimulusDisplayLinkCallback( CVDisplayLinkRef displayLink,
     self = [super initWithFrame:display.screen.frame pixelFormat:[self defaultPixelFormat]];
     if (self) {
         _display = display;
+        CGLLockContext([self.openGLContext CGLContextObj]);
+        [self.openGLContext makeCurrentContext];
+        glMatrixMode(GL_PROJECTION);
+        glLoadIdentity();
+        screenRatio =  (GLfloat)display.screen.frame.size.width/(GLfloat)display.screen.frame.size.height;
+        glOrtho(-(GLdouble)screenRatio, (GLdouble)screenRatio, -1.0, 1.0, -1.0, 1.0);
+        glMatrixMode(GL_MODELVIEW);
+        CGLUnlockContext([self.openGLContext CGLContextObj]);
+        [self makeDisplayList];
         CVReturn error = CVDisplayLinkCreateWithCGDisplay(display.displayID, &displayLink);
         if(error) {
             NSLog(@"DisplayLink created with error:%d", error);
             displayLink = NULL;
         } else {
-            
-            error = CVDisplayLinkSetOutputCallback(displayLink, stimulusDisplayLinkCallback, (__bridge void *)(self));
+            error = CVDisplayLinkSetOutputCallback(displayLink, stimulusDisplayLinkCallback, (__bridge void *)self);
+            if (error) {
+                NSLog(@"StimulusView initWithDisplay: set displaylink callback failed with error %i", error);
+            }
         }
     }
-    CVDisplayLinkStart(displayLink);
     return self;
 }
 
+- (void)startDisplayLink {
+    CVReturn error = CVDisplayLinkStart(displayLink);
+    if (error != kCVReturnSuccess) {
+        NSLog(@"StimulusView startDisplayLink: Error: %i", error);
+    }
+}
+
 - (CVReturn) drawFrameForTime:(const CVTimeStamp *)outputTime {
-   // currentFrame = [self.stimulus.getFrameForTime:outputTime];
+//    currentFrame = [self.stimulus.getFrameForTime:outputTime];
     [self drawRect:NSZeroRect];
-    NSLog(@"called");
     return kCVReturnSuccess;
+}
+
+- (void)makeDisplayList {
+    CGLLockContext([self.openGLContext CGLContextObj]);
+    displayListID = glGenLists(1);
+    glNewList(displayListID, GL_COMPILE);
+    glColor3f(0.5, 0.5, 0.5);
+    glBegin(GL_QUADS);
+    {
+        glTexCoord2f(0.0, 0.0); glVertex3f( -0.4, -0.4, 0.0);
+        glTexCoord2f(0.0, 1.0); glVertex3f( -0.4, 0.4, 0.0);
+        glTexCoord2f(1.0, 1.0); glVertex3f(  0.4, 0.4 ,0.0);
+        glTexCoord2f(1.0, 0.0); glVertex3f(  0.4, -0.4 ,0.0);
+    }
+    glEnd();
+    glEndList();
+    CGLUnlockContext([self.openGLContext CGLContextObj]);
 }
 
 - (void)drawRect:(NSRect)dirtyRect
 {
+    CGLLockContext([self.openGLContext CGLContextObj]);
     [self.openGLContext makeCurrentContext];
-    glClearColor(0, 0, 0, 0);
-    glClear(GL_COLOR_BUFFER_BIT);
-    glColor3f(1.0f, 0.85f, 0.35f);
-    glBegin(GL_TRIANGLES);
-    {
-        glVertex3f(  0.0,  0.6, 0.0);
-        glVertex3f( -0.2, -0.3, 0.0);
-        glVertex3f(  0.2, -0.3 ,0.0);
-    }
-    glEnd();
+    glClearColor(0.5, 0.5, 0.5, 0);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glCallList(displayListID);
     glSwapAPPLE();
+    CGLUnlockContext([self.openGLContext CGLContextObj]);
 }
 
 - (NSOpenGLPixelFormat *)defaultPixelFormat
@@ -72,6 +105,13 @@ static CVReturn stimulusDisplayLinkCallback( CVDisplayLinkRef displayLink,
         NSOpenGLPFADoubleBuffer,
         (NSOpenGLPixelFormatAttribute)nil };
     return (NSOpenGLPixelFormat *)[[NSOpenGLPixelFormat alloc] initWithAttributes:attributes];
+}
+
+- (void)useProgram:(GLProgram *)program {
+    CGLLockContext([self.openGLContext CGLContextObj]);
+    [self.openGLContext makeCurrentContext];
+    glUseProgram(program.programID);
+    CGLUnlockContext([self.openGLContext CGLContextObj]);
 }
 
 @end
