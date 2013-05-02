@@ -23,7 +23,7 @@
 
 - (IBAction)showStimulus:(id)sender {
     NSArray *displays = [Display getCurrentDisplayList];
-    Display *display = [displays objectAtIndex:0];
+    Display *display = [displays objectAtIndex:1];
     NSLog(@"Using display: %@", display.name);
     NSRect mainDisplayRect = [display.screen frame];
 //    mainDisplayRect.size.width /= 2;
@@ -31,9 +31,8 @@
     
     NSWindow *fullScreenWindow = [[NSWindow alloc] initWithContentRect: mainDisplayRect styleMask:NSBorderlessWindowMask backing:NSBackingStoreBuffered defer:YES];
     self.fullScreenWindow = fullScreenWindow;
-    [fullScreenWindow setLevel:NSMainMenuWindowLevel+1];
+    [fullScreenWindow setLevel:NSScreenSaverWindowLevel];
     [fullScreenWindow setOpaque:YES];
-    [fullScreenWindow setHidesOnDeactivate:YES];
     StimulusView *fullScreenView = [[StimulusView alloc] initWithDisplay:display];
     self.view = fullScreenView;
     [fullScreenWindow setContentView: fullScreenView];
@@ -66,7 +65,8 @@
     info = calloc(length+1, sizeof(GLchar));
     glGetShaderInfoLog(self.fshader.shaderID, length, &length, info);
     NSLog(@"fshaderInfo: %i %s", length, info);
-    free(info);[fullScreenWindow makeKeyAndOrderFront:self];
+    free(info);
+    [fullScreenWindow makeKeyAndOrderFront:self];
     [self.view startDisplayLink];
 }
 
