@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A135D51172EF10D00C682C5 /* sinegrating.vs in Resources */ = {isa = PBXBuildFile; fileRef = 1A135D50172EF06500C682C5 /* sinegrating.vs */; };
+		1A135D52172EF10D00C682C5 /* aperture.fs in Resources */ = {isa = PBXBuildFile; fileRef = 1A135D4F172EF03F00C682C5 /* aperture.fs */; };
 		1A1E78E6172B08920065B35A /* GLShader.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A1E78E5172B08920065B35A /* GLShader.m */; };
 		1A1E78E9172B08EA0065B35A /* GLProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A1E78E8172B08EA0065B35A /* GLProgram.m */; };
 		1A54569B1721E4F600F57690 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A54569A1721E4F600F57690 /* IOKit.framework */; };
@@ -21,11 +23,11 @@
 		1A8D3C0C1725F11100FDA42B /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A8D3C0B1725F11100FDA42B /* OpenGL.framework */; };
 		1A93A89617279D1A00C1463C /* StimulusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A93A89517279D1A00C1463C /* StimulusView.m */; };
 		1AA83C421727AC4D00663714 /* CatPixx.icns in Resources */ = {isa = PBXBuildFile; fileRef = 1AA83C411727AC4C00663714 /* CatPixx.icns */; };
-		1AF26451172BF0C80040BFE8 /* vert_test.vs in Resources */ = {isa = PBXBuildFile; fileRef = 1AF2644F172BF0B40040BFE8 /* vert_test.vs */; };
-		1AF26452172BF0C80040BFE8 /* frag_test.fs in Resources */ = {isa = PBXBuildFile; fileRef = 1AF26450172BF0B40040BFE8 /* frag_test.fs */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1A135D4F172EF03F00C682C5 /* aperture.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = aperture.fs; sourceTree = "<group>"; };
+		1A135D50172EF06500C682C5 /* sinegrating.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = sinegrating.vs; sourceTree = "<group>"; };
 		1A1E78E4172B08920065B35A /* GLShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLShader.h; sourceTree = "<group>"; };
 		1A1E78E5172B08920065B35A /* GLShader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLShader.m; sourceTree = "<group>"; };
 		1A1E78E7172B08EA0065B35A /* GLProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLProgram.h; sourceTree = "<group>"; };
@@ -51,8 +53,6 @@
 		1A93A89417279D1A00C1463C /* StimulusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StimulusView.h; sourceTree = "<group>"; };
 		1A93A89517279D1A00C1463C /* StimulusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StimulusView.m; sourceTree = "<group>"; };
 		1AA83C411727AC4C00663714 /* CatPixx.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = CatPixx.icns; sourceTree = SOURCE_ROOT; };
-		1AF2644F172BF0B40040BFE8 /* vert_test.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = vert_test.vs; sourceTree = "<group>"; };
-		1AF26450172BF0B40040BFE8 /* frag_test.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = frag_test.fs; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,8 +73,8 @@
 		1A1E78EA172B1B5A0065B35A /* OpenGL Shaders */ = {
 			isa = PBXGroup;
 			children = (
-				1AF2644F172BF0B40040BFE8 /* vert_test.vs */,
-				1AF26450172BF0B40040BFE8 /* frag_test.fs */,
+				1A135D50172EF06500C682C5 /* sinegrating.vs */,
+				1A135D4F172EF03F00C682C5 /* aperture.fs */,
 			);
 			name = "OpenGL Shaders";
 			sourceTree = "<group>";
@@ -124,10 +124,10 @@
 				1A1E78EA172B1B5A0065B35A /* OpenGL Shaders */,
 				1A5696FD172073F5009FFE5B /* AppDelegate.h */,
 				1A5696FE172073F5009FFE5B /* AppDelegate.m */,
-				1A569708172092D9009FFE5B /* Display.h */,
-				1A569709172092D9009FFE5B /* Display.m */,
 				1A93A89417279D1A00C1463C /* StimulusView.h */,
 				1A93A89517279D1A00C1463C /* StimulusView.m */,
+				1A569708172092D9009FFE5B /* Display.h */,
+				1A569709172092D9009FFE5B /* Display.m */,
 				1A1E78E7172B08EA0065B35A /* GLProgram.h */,
 				1A1E78E8172B08EA0065B35A /* GLProgram.m */,
 				1A1E78E4172B08920065B35A /* GLShader.h */,
@@ -202,8 +202,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1AF26451172BF0C80040BFE8 /* vert_test.vs in Resources */,
-				1AF26452172BF0C80040BFE8 /* frag_test.fs in Resources */,
+				1A135D51172EF10D00C682C5 /* sinegrating.vs in Resources */,
+				1A135D52172EF10D00C682C5 /* aperture.fs in Resources */,
 				1A5696F6172073F5009FFE5B /* InfoPlist.strings in Resources */,
 				1A5696FC172073F5009FFE5B /* Credits.rtf in Resources */,
 				1A569702172073F5009FFE5B /* MainMenu.xib in Resources */,

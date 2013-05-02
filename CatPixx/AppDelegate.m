@@ -11,7 +11,9 @@
 #import "StimulusView.h"
 #import "GLProgram.h"
 #import "GLShader.h"
-#include <OpenGL/gl.h>
+#import "OpenGL/gl3.h"
+#import "OpenGL/gl3ext.h"
+
 @implementation AppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
@@ -24,6 +26,9 @@
     Display *display = [displays objectAtIndex:0];
     NSLog(@"Using display: %@", display.name);
     NSRect mainDisplayRect = [display.screen frame];
+//    mainDisplayRect.size.width /= 2;
+//    mainDisplayRect.size.height /= 2;
+    
     NSWindow *fullScreenWindow = [[NSWindow alloc] initWithContentRect: mainDisplayRect styleMask:NSBorderlessWindowMask backing:NSBackingStoreBuffered defer:YES];
     self.fullScreenWindow = fullScreenWindow;
     [fullScreenWindow setLevel:NSMainMenuWindowLevel+1];
@@ -32,25 +37,37 @@
     StimulusView *fullScreenView = [[StimulusView alloc] initWithDisplay:display];
     self.view = fullScreenView;
     [fullScreenWindow setContentView: fullScreenView];
-    [fullScreenWindow makeKeyAndOrderFront:self];
-   // [self.view.openGLContext makeCurrentContext];
+    
+    
+    
+    [self.view.openGLContext makeCurrentContext];
+    NSLog(@"OpenGL version: %s", glGetString(GL_VERSION));
     self.program = [[GLProgram alloc] initWithView:self.view];
-    self.vshader = [[GLShader alloc] initWithFile:@"vert_test.vs" forShaderType:GL_VERTEX_SHADER];
-    self.fshader = [[GLShader alloc] initWithFile:@"frag_test.fs" forShaderType:GL_FRAGMENT_SHADER];
+    self.vshader = [[GLShader alloc] initWithFile:@"sinegrating.vs" forShaderType:GL_VERTEX_SHADER];
+    self.fshader = [[GLShader alloc] initWithFile:@"aperture.fs" forShaderType:GL_FRAGMENT_SHADER];
     [self.program attachShader:self.vshader];
     [self.program attachShader:self.fshader];
     [self.program linkProgram];
     [self.view useProgram:self.program];
-//    glEnable(GL_TEXTURE_2D);
-//    GLuint textureID = 0;
-//    glGenTextures(1, &textureID);
-    [self.view startDisplayLink];
+    [self.view makeGLDisplayList];
+    
     GLsizei length = 0;
     glGetProgramiv(self.program.programID, GL_INFO_LOG_LENGTH, &length);
     GLchar *info = calloc(length+1, sizeof(GLchar));
     glGetProgramInfoLog(self.program.programID, length, &length, info);
-    NSLog(@"length: %i %s", length, info);
+    NSLog(@"ProgramInfo: %i %s", length, info);
     free(info);
+    glGetShaderiv(self.vshader.shaderID, GL_INFO_LOG_LENGTH, &length);
+    info = calloc(length+1, sizeof(GLchar));
+    glGetShaderInfoLog(self.vshader.shaderID, length, &length, info);
+    NSLog(@"vshaderInfo: %i %s", length, info);
+    free(info);
+    glGetShaderiv(self.fshader.shaderID, GL_INFO_LOG_LENGTH, &length);
+    info = calloc(length+1, sizeof(GLchar));
+    glGetShaderInfoLog(self.fshader.shaderID, length, &length, info);
+    NSLog(@"fshaderInfo: %i %s", length, info);
+    free(info);[fullScreenWindow makeKeyAndOrderFront:self];
+    [self.view startDisplayLink];
 }
 
 @end

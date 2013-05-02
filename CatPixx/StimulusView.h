@@ -18,12 +18,13 @@
 }
 
 @property (weak, readonly) Display *display;
+@property (strong, readonly) GLProgram *program;
 
 - (id)initWithDisplay:(Display *)display;
 
 - (void)startDisplayLink;
 
-- (void)makeDisplayList;
+- (void)makeGLDisplayList;
 
 - (CVReturn) drawFrameForTime:(const CVTimeStamp *)outputTime;
 
