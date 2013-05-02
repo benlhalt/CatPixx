@@ -27,6 +27,7 @@ const float deg2rad = 3.141592654 / 180.0;
 
 /* Attributes passed from Screen(): See the ProceduralShadingAPI.m file for infos: */
 in vec2 position2d;
+smooth out vec2 fragCoord;
 //attribute vec4 modulateColor;
 //attribute vec4 auxParameters0;
 
@@ -54,4 +55,5 @@ void main()
 
     /* Premultiply the wanted Contrast to the color: */
     baseColor = vec4(1.0, 1.0, 1.0, 1.0);//modulateColor * Contrast * contrastPreMultiplicator;
+    fragCoord = position2d;
 }

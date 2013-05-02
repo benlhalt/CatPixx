@@ -94,10 +94,10 @@ GLfloat vertexArray[] = {
 };
 
 GLfloat textureArray[] = {
-    0.0, 0.0,
-    0.0, 1.0,
-    1.0, 1.0,
-    1.0, 0.0
+    -1.6, -1.0,
+    -1.6,  1.0,
+     1.6, -1.0,
+     1.6,  1.0
 };
 
 GLuint vao=666, vertexBO=666, textureBO=666;
@@ -119,9 +119,7 @@ GLint vertexAL=666, textureAL=666;
 //    glUniform4f(offsetID, 0.0, 0.0, 0.0, 0.0);
 
 
-//    modulateColorAL = glGetAttribLocation(self.program.programID, "modulateColor");
-//    auxParametersAL = glGetAttribLocation(self.program.programID, "auxParameters0");
-    
+   
     glGenVertexArrays(1, &vao);
     glBindVertexArray(vao);
     
@@ -132,37 +130,18 @@ GLint vertexAL=666, textureAL=666;
     vertexAL = glGetAttribLocation(self.program.programID, "position2d");
     glEnableVertexAttribArray(vertexAL);
     glVertexAttribPointer(vertexAL, 2, GL_FLOAT, GL_FALSE, 0, 0);
-//    glVertexPointer(2, GL_FLOAT, 0, 0);
+    
+//    glGenBuffers(1, &textureBO);
+//    glBindBuffer(GL_ARRAY_BUFFER, textureBO);
+//    glBufferData(GL_ARRAY_BUFFER, sizeof(textureArray), textureArray, GL_DYNAMIC_READ);
+//    
+//    textureAL = glGetAttribLocation(self.program.programID, "texture2d");
+//    glEnableVertexAttribArray(textureAL);
+//    glVertexAttribPointer(textureAL, 2, GL_FLOAT, GL_FALSE, 0, 0);
     
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);
     
-//    
-//    glGenBuffers(1, &textureID);
-//    glBindBuffer(GL_ARRAY_BUFFER, textureID);
-//    glBufferData(GL_ARRAY_BUFFER, sizeof(textureArray), textureArray, GL_DYNAMIC_READ);
-//    
-//    glGenBuffers(1, &modulateColorID);
-//    glBindBuffer(GL_ARRAY_BUFFER, modulateColorID);
-//    glBufferData(GL_ARRAY_BUFFER, sizeof(modulateColor), modulateColor, GL_DYNAMIC_READ);
-//    
-//    glGenBuffers(1, &auxParametersID);
-//    glBindBuffer(GL_ARRAY_BUFFER, auxParametersID);
-//    glBufferData(GL_ARRAY_BUFFER, sizeof(auxParameters), auxParameters, GL_DYNAMIC_READ);
-    
-    
-//    displayListID = glGenLists(1);
-//    glNewList(displayListID, GL_COMPILE);
-//    glColor3f(0.0, 0.5, 0.5);
-//    glBegin(GL_QUADS);
-//    {
-//        glTexCoord2f(0.0, 0.0); glVertex3f( -0.4, -0.4, 0.0);
-//        glTexCoord2f(0.0, 1.0); glVertex3f( -0.4,  0.4, 0.0);
-//        glTexCoord2f(1.0, 1.0); glVertex3f(  0.4,  0.4 ,0.0);
-//        glTexCoord2f(1.0, 0.0); glVertex3f(  0.4, -0.4 ,0.0);
-//    }
-//    glEnd();
-//    glEndList();
     CGLUnlockContext([self.openGLContext CGLContextObj]);
 }
 GLfloat phase = 0.0;
@@ -172,11 +151,10 @@ GLfloat phase = 0.0;
     [self.openGLContext makeCurrentContext];
     glClearColor(0.5, 0.5, 0.5, 0);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    glUniform1f(phaseAL, phase++);
+    glUniform1f(phaseAL, phase++/5);
     glBindVertexArray(vao);
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
     glBindVertexArray(0);
-    
     glSwapAPPLE();
     CGLUnlockContext([self.openGLContext CGLContextObj]);
 }

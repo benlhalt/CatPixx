@@ -15,20 +15,18 @@
 //uniform vec4 Offset;
 
 in vec4  baseColor;
+smooth in vec2 fragCoord;
 uniform float Phase;
 //varying float FreqTwoPi;
 out vec4 outColor;
 
 void main()
 {
-    /* Query current output texel position: */
-    vec2 pos = gl_FragCoord.xy;
-
     /* If distance to center (aka radius of pixel) > Radius, discard this pixel: */
-    //if (distance(pos, vec2(0,0)) > 800.0) discard;
+    if (distance(fragCoord, vec2(0,0)) > 0.5) discard;
 
     /* Evaluate sine grating at requested position, frequency and phase: */
-    float sv = sin(pos.x * 0.1 + Phase);
+    float sv = sin(fragCoord.x * 25.0 + Phase);
 
     /* Multiply/Modulate base color and alpha with calculated sine            */
     /* values, add some constant color/alpha Offset, assign as final fragment */
