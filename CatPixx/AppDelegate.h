@@ -11,6 +11,7 @@
 @class StimulusView;
 @class GLShader;
 @class GLProgram;
+@class Stimulus;
 
 @interface AppDelegate : NSObject <NSApplicationDelegate> {
     
@@ -23,6 +24,8 @@
 @property (strong) GLShader *vshader;
 @property (strong) GLShader *fshader;
 @property (weak) IBOutlet NSButton *showStimulusButton;
+@property (strong) Stimulus *stimulus;
+
 - (IBAction)showStimulus:(id)sender;
 
 @end

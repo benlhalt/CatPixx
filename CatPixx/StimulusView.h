@@ -10,6 +10,7 @@
 
 @class Display;
 @class GLProgram;
+@class Stimulus;
 
 @interface StimulusView : NSOpenGLView {
     CVDisplayLinkRef displayLink;
@@ -19,17 +20,22 @@
 
 @property (weak, readonly) Display *display;
 @property (strong, readonly) GLProgram *program;
+@property (weak) Stimulus *stimulus;
 
 - (id)initWithDisplay:(Display *)display;
 
 - (void)startDisplayLink;
 
-- (void)makeGLDisplayList;
+- (void)makeVAO;
 
 - (CVReturn) drawFrameForTime:(const CVTimeStamp *)outputTime;
 
 - (NSOpenGLPixelFormat *)defaultPixelFormat;
 
 - (void)useProgram:(GLProgram *)program;
+
+- (void)lockAndMakeCurrent;
+
+- (void)unlock;
 
 @end

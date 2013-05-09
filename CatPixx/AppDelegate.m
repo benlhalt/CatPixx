@@ -13,6 +13,7 @@
 #import "GLShader.h"
 #import "OpenGL/gl3.h"
 #import "OpenGL/gl3ext.h"
+#import "DriftingGrating.h"
 
 @implementation AppDelegate
 
@@ -23,7 +24,7 @@
 
 - (IBAction)showStimulus:(id)sender {
     NSArray *displays = [Display getCurrentDisplayList];
-    Display *display = [displays objectAtIndex:1];
+    Display *display = [displays objectAtIndex:0];
     NSLog(@"Using display: %@", display.name);
     NSRect mainDisplayRect = [display.screen frame];
 //    mainDisplayRect.size.width /= 2;
@@ -48,7 +49,10 @@
     [self.program attachShader:self.fshader];
     [self.program linkProgram];
     [self.view useProgram:self.program];
-    [self.view makeGLDisplayList];
+    Stimulus *grating = [[DriftingGrating alloc] initWithProgram:self.program];
+    self.view.stimulus = grating;
+    self.stimulus = grating;
+    [self.view makeVAO];
     
     GLsizei length = 0;
     glGetProgramiv(self.program.programID, GL_INFO_LOG_LENGTH, &length);

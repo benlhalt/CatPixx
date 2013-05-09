@@ -8,6 +8,7 @@
 
 
 #import "StimulusView.h"
+#import "Stimulus.h"
 #import "GLProgram.h"
 #import "Display.h"
 #import "OpenGL/gl3.h"
@@ -31,6 +32,7 @@ static CVReturn stimulusDisplayLinkCallback( CVDisplayLinkRef displayLink,
 
 @synthesize display = _display;
 @synthesize program = _program;
+@synthesize stimulus = _stimulus;
 
 - (id)initWithDisplay:(Display *)display
 {
@@ -39,16 +41,8 @@ static CVReturn stimulusDisplayLinkCallback( CVDisplayLinkRef displayLink,
         _display = display;
         CGLLockContext([self.openGLContext CGLContextObj]);
         [self.openGLContext makeCurrentContext];
-//        glEnableClientState(GL_VERTEX_ARRAY);
-//        glMatrixMode(GL_PROJECTION);
-//        glLoadIdentity();
         screenRatio =  (GLfloat)display.screen.frame.size.width/(GLfloat)display.screen.frame.size.height;
-        NSLog(@"ratio : %f", screenRatio);
-//        glOrtho(-(GLdouble)screenRatio, (GLdouble)screenRatio, -1.0, 1.0, -1.0, 1.0);
-//        glMatrixMode(GL_MODELVIEW);
-        CGLUnlockContext([self.openGLContext CGLContextObj]);
-      //  [self makeGLDisplayList];
-        CVReturn error = CVDisplayLinkCreateWithCGDisplay(display.displayID, &displayLink);
+        NSLog(@"ratio : %f", screenRatio);        CGLUnlockContext([self.openGLContext CGLContextObj]);        CVReturn error = CVDisplayLinkCreateWithCGDisplay(display.displayID, &displayLink);
         if(error) {
             NSLog(@"DisplayLink created with error:%d", error);
             displayLink = NULL;
@@ -70,21 +64,19 @@ static CVReturn stimulusDisplayLinkCallback( CVDisplayLinkRef displayLink,
 }
 
 - (CVReturn) drawFrameForTime:(const CVTimeStamp *)outputTime {
-//    currentFrame = [self.stimulus.getFrameForTime:outputTime];
-    [self drawRect:NSZeroRect];
+    [self lockAndMakeCurrent];
+    [self.stimulus updateScreenForTime:outputTime];
+    
+    glClearColor(0.5, 0.5, 0.5, 0);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glBindVertexArray(vao);
+    glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+    glBindVertexArray(0);
+    glSwapAPPLE();
+    
+    [self unlock];
     return kCVReturnSuccess;
 }
-
-GLint contrastPreMultiplicatorID;
-GLint radiusID;
-GLint centerID;
-GLint offsetID;
-GLint phaseAL;
-
-GLfloat modulateColor[] = {1.0, 1.0, 1.0, 1.0};
-GLfloat auxParameters[] = {45.0, 5.0, 1.0, 0.0}; // {degrees, Hz, contrast, unused}
-GLuint modulateColorID, auxParametersID;
-GLint modulateColorAL, auxParametersAL;
 
 GLfloat vertexArray[] = {
     -3.2, -2.0,
@@ -93,33 +85,12 @@ GLfloat vertexArray[] = {
      3.2,  2.0
 };
 
-GLfloat textureArray[] = {
-    -1.6, -1.0,
-    -1.6,  1.0,
-     1.6, -1.0,
-     1.6,  1.0
-};
+GLuint vao=666, vertexBO=666;
+GLint vertexAL=666;
 
-GLuint vao=666, vertexBO=666, textureBO=666;
-GLint vertexAL=666, textureAL=666;
+- (void)makeVAO {
+    [self lockAndMakeCurrent];
 
-- (void)makeGLDisplayList {
-    CGLLockContext([self.openGLContext CGLContextObj]);
-    [self.openGLContext makeCurrentContext];
-//    glEnableClientState(GL_VERTEX_ARRAY);
-    
-//    contrastPreMultiplicatorID = glGetUniformLocation(self.program.programID, "contrastPreMultiplicator");
-//    radiusID = glGetUniformLocation(self.program.programID, "Radius");
-//    centerID = glGetUniformLocation(self.program.programID, "Center");
-    phaseAL = glGetUniformLocation(self.program.programID, "Phase");
-    
-//    glUniform1f(contrastPreMultiplicatorID, 1.0);
-//    glUniform1f(radiusID, 0.5);
-//    glUniform2f(centerID, 0.0, 1.0);
-//    glUniform4f(offsetID, 0.0, 0.0, 0.0, 0.0);
-
-
-   
     glGenVertexArrays(1, &vao);
     glBindVertexArray(vao);
     
@@ -131,32 +102,15 @@ GLint vertexAL=666, textureAL=666;
     glEnableVertexAttribArray(vertexAL);
     glVertexAttribPointer(vertexAL, 2, GL_FLOAT, GL_FALSE, 0, 0);
     
-//    glGenBuffers(1, &textureBO);
-//    glBindBuffer(GL_ARRAY_BUFFER, textureBO);
-//    glBufferData(GL_ARRAY_BUFFER, sizeof(textureArray), textureArray, GL_DYNAMIC_READ);
-//    
-//    textureAL = glGetAttribLocation(self.program.programID, "texture2d");
-//    glEnableVertexAttribArray(textureAL);
-//    glVertexAttribPointer(textureAL, 2, GL_FLOAT, GL_FALSE, 0, 0);
-    
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);
     
-    CGLUnlockContext([self.openGLContext CGLContextObj]);
+    [self unlock];
 }
-GLfloat phase = 0.0;
+
 - (void)drawRect:(NSRect)dirtyRect
 {
-    CGLLockContext([self.openGLContext CGLContextObj]);
-    [self.openGLContext makeCurrentContext];
-    glClearColor(0.5, 0.5, 0.5, 0);
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    glUniform1f(phaseAL, phase++/5);
-    glBindVertexArray(vao);
-    glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
-    glBindVertexArray(0);
-    glSwapAPPLE();
-    CGLUnlockContext([self.openGLContext CGLContextObj]);
+    [super drawRect:dirtyRect];
 }
 
 - (NSOpenGLPixelFormat *)defaultPixelFormat
@@ -170,10 +124,19 @@ GLfloat phase = 0.0;
 }
 
 - (void)useProgram:(GLProgram *)program {
-    CGLLockContext([self.openGLContext CGLContextObj]);
+    [self lockAndMakeCurrent];
     _program = program;
     [self.openGLContext makeCurrentContext];
     glUseProgram(program.programID);
+    [self unlock];
+}
+
+- (void)lockAndMakeCurrent {
+    CGLLockContext([self.openGLContext CGLContextObj]);
+    [self.openGLContext makeCurrentContext];
+}
+
+- (void)unlock {
     CGLUnlockContext([self.openGLContext CGLContextObj]);
 }
 

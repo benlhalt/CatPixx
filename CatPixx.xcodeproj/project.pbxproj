@@ -19,9 +19,12 @@
 		1A5696FF172073F5009FFE5B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5696FE172073F5009FFE5B /* AppDelegate.m */; };
 		1A569702172073F5009FFE5B /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A569700172073F5009FFE5B /* MainMenu.xib */; };
 		1A56970A172092D9009FFE5B /* Display.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A569709172092D9009FFE5B /* Display.m */; };
+		1A6C2C0A1739F28A005FC398 /* Stimulus.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6C2C091739F28A005FC398 /* Stimulus.m */; };
+		1A6C2C0D173A014E005FC398 /* GLUniformAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6C2C0C173A014E005FC398 /* GLUniformAttribute.m */; };
 		1A76F17C1729CCB9007DE79F /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A76F17B1729CCB9007DE79F /* CoreVideo.framework */; };
 		1A8D3C0C1725F11100FDA42B /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A8D3C0B1725F11100FDA42B /* OpenGL.framework */; };
 		1A93A89617279D1A00C1463C /* StimulusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A93A89517279D1A00C1463C /* StimulusView.m */; };
+		1A987379173893F900F58970 /* DriftingGrating.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A987378173893F900F58970 /* DriftingGrating.m */; };
 		1AA83C421727AC4D00663714 /* CatPixx.icns in Resources */ = {isa = PBXBuildFile; fileRef = 1AA83C411727AC4C00663714 /* CatPixx.icns */; };
 /* End PBXBuildFile section */
 
@@ -48,10 +51,16 @@
 		1A569701172073F5009FFE5B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		1A569708172092D9009FFE5B /* Display.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Display.h; sourceTree = "<group>"; };
 		1A569709172092D9009FFE5B /* Display.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Display.m; sourceTree = "<group>"; };
+		1A6C2C081739F28A005FC398 /* Stimulus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stimulus.h; sourceTree = "<group>"; };
+		1A6C2C091739F28A005FC398 /* Stimulus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Stimulus.m; sourceTree = "<group>"; };
+		1A6C2C0B173A014E005FC398 /* GLUniformAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLUniformAttribute.h; sourceTree = "<group>"; };
+		1A6C2C0C173A014E005FC398 /* GLUniformAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLUniformAttribute.m; sourceTree = "<group>"; };
 		1A76F17B1729CCB9007DE79F /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		1A8D3C0B1725F11100FDA42B /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		1A93A89417279D1A00C1463C /* StimulusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StimulusView.h; sourceTree = "<group>"; };
 		1A93A89517279D1A00C1463C /* StimulusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StimulusView.m; sourceTree = "<group>"; };
+		1A987377173893F900F58970 /* DriftingGrating.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DriftingGrating.h; sourceTree = "<group>"; };
+		1A987378173893F900F58970 /* DriftingGrating.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DriftingGrating.m; sourceTree = "<group>"; };
 		1AA83C411727AC4C00663714 /* CatPixx.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = CatPixx.icns; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -70,6 +79,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1A0AD93E1737630700C3B060 /* Stimuli */ = {
+			isa = PBXGroup;
+			children = (
+				1A6C2C081739F28A005FC398 /* Stimulus.h */,
+				1A6C2C091739F28A005FC398 /* Stimulus.m */,
+				1A6C2C0B173A014E005FC398 /* GLUniformAttribute.h */,
+				1A6C2C0C173A014E005FC398 /* GLUniformAttribute.m */,
+				1A987377173893F900F58970 /* DriftingGrating.h */,
+				1A987378173893F900F58970 /* DriftingGrating.m */,
+			);
+			name = Stimuli;
+			sourceTree = "<group>";
+		};
 		1A1E78EA172B1B5A0065B35A /* OpenGL Shaders */ = {
 			isa = PBXGroup;
 			children = (
@@ -121,6 +143,7 @@
 		1A5696F1172073F5009FFE5B /* CatPixx */ = {
 			isa = PBXGroup;
 			children = (
+				1A0AD93E1737630700C3B060 /* Stimuli */,
 				1A1E78EA172B1B5A0065B35A /* OpenGL Shaders */,
 				1A5696FD172073F5009FFE5B /* AppDelegate.h */,
 				1A5696FE172073F5009FFE5B /* AppDelegate.m */,
@@ -224,6 +247,9 @@
 				1A93A89617279D1A00C1463C /* StimulusView.m in Sources */,
 				1A1E78E6172B08920065B35A /* GLShader.m in Sources */,
 				1A1E78E9172B08EA0065B35A /* GLProgram.m in Sources */,
+				1A987379173893F900F58970 /* DriftingGrating.m in Sources */,
+				1A6C2C0A1739F28A005FC398 /* Stimulus.m in Sources */,
+				1A6C2C0D173A014E005FC398 /* GLUniformAttribute.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

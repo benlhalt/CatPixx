@@ -15,11 +15,14 @@
 
 @property (weak) StimulusView *view;
 @property (readonly) GLint programID;
+@property (readonly) BOOL isLinked;
 
 - (id)initWithView:(StimulusView *)view;
 
 - (void)attachShader:(GLShader *)shader;
 
 - (void)linkProgram;
+
+- (GLint)getUniformLocationForName:(NSString *)name;
 
 @end
