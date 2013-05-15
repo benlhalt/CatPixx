@@ -11,7 +11,8 @@
 @class StimulusView;
 @class GLShader;
 @class GLProgram;
-@class Stimulus;
+@class DriftingGrating;
+@class DriftingGratingParameterControl;
 
 @interface AppDelegate : NSObject <NSApplicationDelegate> {
     
@@ -24,8 +25,11 @@
 @property (strong) GLShader *vshader;
 @property (strong) GLShader *fshader;
 @property (weak) IBOutlet NSButton *showStimulusButton;
-@property (strong) Stimulus *stimulus;
+@property (strong) DriftingGrating *stimulus;
+@property (weak) IBOutlet DriftingGratingParameterControl *stimulusControl;
 
 - (IBAction)showStimulus:(id)sender;
+- (IBAction)setStimulusOrientationAndRadius:(DriftingGratingParameterControl *)sender;
+- (IBAction)setStimulusTemporalFrequency:(id)sender;
 
 @end

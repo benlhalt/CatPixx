@@ -18,9 +18,7 @@
 
 - (id)initWithProgram:(GLProgram *)program;
 
-- (void)setUniformFloatKey:(NSString *)key withValue:(float)value;
-
-- (void)setUniformVectorKey:(NSString *)key withValue:(NSArray *)value;
+- (void)setUniformKey:(NSString *)key withValue:(id)value;
 
 - (void)updateScreenForTime:(const CVTimeStamp *)outputTime;
 

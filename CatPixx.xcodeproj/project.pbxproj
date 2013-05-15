@@ -26,6 +26,7 @@
 		1A93A89617279D1A00C1463C /* StimulusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A93A89517279D1A00C1463C /* StimulusView.m */; };
 		1A987379173893F900F58970 /* DriftingGrating.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A987378173893F900F58970 /* DriftingGrating.m */; };
 		1AA83C421727AC4D00663714 /* CatPixx.icns in Resources */ = {isa = PBXBuildFile; fileRef = 1AA83C411727AC4C00663714 /* CatPixx.icns */; };
+		1AC59B6E1742B62800FB2F33 /* DriftingGratingParameterControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AC59B6D1742B62800FB2F33 /* DriftingGratingParameterControl.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +63,8 @@
 		1A987377173893F900F58970 /* DriftingGrating.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DriftingGrating.h; sourceTree = "<group>"; };
 		1A987378173893F900F58970 /* DriftingGrating.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DriftingGrating.m; sourceTree = "<group>"; };
 		1AA83C411727AC4C00663714 /* CatPixx.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = CatPixx.icns; sourceTree = SOURCE_ROOT; };
+		1AC59B6C1742B62800FB2F33 /* DriftingGratingParameterControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DriftingGratingParameterControl.h; sourceTree = "<group>"; };
+		1AC59B6D1742B62800FB2F33 /* DriftingGratingParameterControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DriftingGratingParameterControl.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +150,8 @@
 				1A1E78EA172B1B5A0065B35A /* OpenGL Shaders */,
 				1A5696FD172073F5009FFE5B /* AppDelegate.h */,
 				1A5696FE172073F5009FFE5B /* AppDelegate.m */,
+				1AC59B6C1742B62800FB2F33 /* DriftingGratingParameterControl.h */,
+				1AC59B6D1742B62800FB2F33 /* DriftingGratingParameterControl.m */,
 				1A93A89417279D1A00C1463C /* StimulusView.h */,
 				1A93A89517279D1A00C1463C /* StimulusView.m */,
 				1A569708172092D9009FFE5B /* Display.h */,
@@ -250,6 +255,7 @@
 				1A987379173893F900F58970 /* DriftingGrating.m in Sources */,
 				1A6C2C0A1739F28A005FC398 /* Stimulus.m in Sources */,
 				1A6C2C0D173A014E005FC398 /* GLUniformAttribute.m in Sources */,
+				1AC59B6E1742B62800FB2F33 /* DriftingGratingParameterControl.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -26,14 +26,14 @@
     return self;
 }
 
-- (void)setUniformFloatKey:(NSString *)key withValue:(float)value {
-    GLUniformAttribute *attribute = [[GLUniformAttribute alloc] initWithName:key andValue:[NSNumber numberWithFloat:value] inGLProgram:self.program];
-    [self.uniformAttributes setObject:attribute forKey:key];
-}
-
-- (void)setUniformVectorKey:(NSString *)key withValue:(NSArray *)value {
-    GLUniformAttribute *attribute = [[GLUniformAttribute alloc] initWithName:key andValue:value inGLProgram:self.program];
-    [self.uniformAttributes setObject:attribute forKey:key];
+- (void)setUniformKey:(NSString *)key withValue:(id)value {
+    GLUniformAttribute *attribute = [self.uniformAttributes objectForKey:key];
+    if (attribute) {
+        attribute.value = value;
+    } else {
+        attribute = [[GLUniformAttribute alloc] initWithName:key andValue:value inGLProgram:self.program];
+        [self.uniformAttributes setObject:attribute forKey:key];
+    }
 }
 
 - (void)updateScreenForTime:(const CVTimeStamp *)outputTime {

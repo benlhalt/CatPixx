@@ -13,12 +13,12 @@
     BOOL _startTimeisSet;
 }
 
-@property (strong) NSNumber *contrast;
-@property (strong) NSArray *center;
-@property (strong) NSNumber *radius;
-@property (strong) NSNumber *orientation;
-@property (strong) NSNumber *temporalFrequency;
-@property (strong) NSNumber *spatialFrequency;
+@property float contrast;
+@property NSPoint center;
+@property float radius;
+@property float orientation;
+@property float temporalFrequency;
+@property float spatialFrequency;
 
 - (id)initWithProgram:(GLProgram *)program;
 

@@ -14,6 +14,7 @@
 #import "OpenGL/gl3.h"
 #import "OpenGL/gl3ext.h"
 #import "DriftingGrating.h"
+#import "DriftingGratingParameterControl.h"
 
 @implementation AppDelegate
 
@@ -49,7 +50,7 @@
     [self.program attachShader:self.fshader];
     [self.program linkProgram];
     [self.view useProgram:self.program];
-    Stimulus *grating = [[DriftingGrating alloc] initWithProgram:self.program];
+    DriftingGrating *grating = [[DriftingGrating alloc] initWithProgram:self.program];
     self.view.stimulus = grating;
     self.stimulus = grating;
     [self.view makeVAO];
@@ -72,6 +73,15 @@
     free(info);
     [fullScreenWindow makeKeyAndOrderFront:self];
     [self.view startDisplayLink];
+}
+
+- (IBAction)setStimulusOrientationAndRadius:(DriftingGratingParameterControl *)sender {
+    self.stimulus.orientation = sender.theta;
+    self.stimulus.spatialFrequency = sender.radius;
+}
+
+- (IBAction)setStimulusTemporalFrequency:(id)sender {
+    self.stimulus.temporalFrequency = [sender floatValue];
 }
 
 @end
