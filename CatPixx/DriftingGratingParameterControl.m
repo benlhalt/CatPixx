@@ -20,7 +20,7 @@
     if (self) {
         // Initialization code here.
         [self.class setCellClass:[NSActionCell class]];
-        self.cell = [[NSActionCell alloc] initImageCell:[NSImage imageWithSize:self.frame.size flipped:NO drawingHandler:^(NSRect dst){ return YES; }]];
+        self.cell = [[NSActionCell alloc] initImageCell:[[NSImage alloc] initWithSize:self.frame.size]];
         [self translateOriginToPoint:NSMakePoint(self.frame.size.width/2.0, self.frame.size.height/2.0)];
     }
     return self;
