@@ -25,7 +25,7 @@
 
 - (IBAction)showStimulus:(id)sender {
     NSArray *displays = [Display getCurrentDisplayList];
-    Display *display = [displays objectAtIndex:0];
+    Display *display = [displays objectAtIndex:1];
     NSLog(@"Using display: %@", display.name);
     NSRect mainDisplayRect = [display.screen frame];
 //    mainDisplayRect.size.width /= 2;
@@ -73,6 +73,7 @@
     free(info);
     [fullScreenWindow makeKeyAndOrderFront:self];
     [self.view startDisplayLink];
+    
 }
 
 - (IBAction)setStimulusOrientationAndRadius:(DriftingGratingParameterControl *)sender {

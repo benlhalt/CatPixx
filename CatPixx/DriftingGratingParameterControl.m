@@ -13,22 +13,29 @@
 
 @synthesize theta = _theta;
 @synthesize radius = _radius;
+@synthesize trackingArea = _trackingArea;
 
 - (id)initWithFrame:(NSRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code here.
+        NSPoint origin = {.x = -self.bounds.size.width/2.0, .y = -self.bounds.size.height/2.0};
+        NSRect area = {.origin = origin, .size = self.bounds.size};
         [self.class setCellClass:[NSActionCell class]];
-        self.cell = [[NSActionCell alloc] initImageCell:[[NSImage alloc] initWithSize:self.frame.size]];
+        self.cell = [[NSActionCell alloc] initImageCell:[[NSImage alloc] initWithSize:self.bounds.size]];
+        _trackingArea = [[NSTrackingArea alloc] initWithRect:area
+                                                    options:NSTrackingActiveAlways|NSTrackingMouseMoved
+                                                    owner:self
+                                                    userInfo:nil];
+        [self addTrackingArea:_trackingArea];
         [self translateOriginToPoint:NSMakePoint(self.frame.size.width/2.0, self.frame.size.height/2.0)];
     }
     return self;
 }
 
 - (void)awakeFromNib {
-    [self.window setAcceptsMouseMovedEvents:YES];
-    [self setContinuous:YES];
+//    [self setContinuous:YES];
 }
 
 - (void)drawRect:(NSRect)dirtyRect
@@ -45,9 +52,6 @@
     double correction = 0.0; // quadrant I
     BOOL upper = location.y >= 0.0;
     BOOL right = location.x >= 0.0;
-    
-    NSLog(@"x: %f, y: %f, dx: %f, dy: %f", location.x, location.y, theEvent.deltaX, theEvent.deltaY);
-
     if (!right) {           // quadrant II & III
         correction = M_PI;
     } else if (!upper){     // quadrant IV
@@ -65,7 +69,6 @@
 
 - (void)mouseDragged:(NSEvent *)theEvent { //not working?
     [self mouseEvent:theEvent];
-    NSLog(@"here");
 }
 
 @end

@@ -32,7 +32,7 @@
     self = [super init];
     if (self) {
         _screen = screen;
-        _displayID = (CGDirectDisplayID)[[screen deviceDescription] valueForKey:@"NSSCreenNumber"];
+        _displayID = (CGDirectDisplayID)[[[screen deviceDescription] valueForKey:@"NSScreenNumber"] unsignedIntValue];
     }
     return self;
 }

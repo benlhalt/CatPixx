@@ -12,7 +12,10 @@
 
 @property double theta;
 @property double radius;
+@property (strong) NSTrackingArea *trackingArea;
 
 - (void)mouseEvent:(NSEvent *)theEvent;
+
+- (void)mouseMoved:(NSEvent *)theEvent;
 
 @end
