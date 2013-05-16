@@ -25,11 +25,11 @@
 
 - (IBAction)showStimulus:(id)sender {
     NSArray *displays = [Display getCurrentDisplayList];
-    Display *display = [displays objectAtIndex:1];
+    Display *display = [displays objectAtIndex:0];
     NSLog(@"Using display: %@", display.name);
     NSRect mainDisplayRect = [display.screen frame];
-//    mainDisplayRect.size.width /= 2;
-//    mainDisplayRect.size.height /= 2;
+    mainDisplayRect.size.width /= 2;
+    mainDisplayRect.size.height /= 2;
     
     NSWindow *fullScreenWindow = [[NSWindow alloc] initWithContentRect: mainDisplayRect styleMask:NSBorderlessWindowMask backing:NSBackingStoreBuffered defer:YES];
     self.fullScreenWindow = fullScreenWindow;
@@ -73,7 +73,6 @@
     free(info);
     [fullScreenWindow makeKeyAndOrderFront:self];
     [self.view startDisplayLink];
-    
 }
 
 - (IBAction)setStimulusOrientationAndRadius:(DriftingGratingParameterControl *)sender {

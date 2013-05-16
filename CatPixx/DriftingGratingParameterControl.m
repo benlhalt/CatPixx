@@ -25,7 +25,7 @@
         [self.class setCellClass:[NSActionCell class]];
         self.cell = [[NSActionCell alloc] initImageCell:[[NSImage alloc] initWithSize:self.bounds.size]];
         _trackingArea = [[NSTrackingArea alloc] initWithRect:area
-                                                    options:NSTrackingActiveAlways|NSTrackingMouseMoved
+                                                    options:NSTrackingActiveInKeyWindow|NSTrackingMouseMoved|NSTrackingEnabledDuringMouseDrag
                                                     owner:self
                                                     userInfo:nil];
         [self addTrackingArea:_trackingArea];
@@ -35,7 +35,7 @@
 }
 
 - (void)awakeFromNib {
-//    [self setContinuous:YES];
+    
 }
 
 - (void)drawRect:(NSRect)dirtyRect
@@ -65,10 +65,22 @@
 
 - (void)mouseMoved:(NSEvent *)theEvent {
     [self mouseEvent:theEvent];
+    NSLog(@"moved");
+}
+
+- (void)mouseDown:(NSEvent *)theEvent {
+    [self mouseEvent:theEvent];
+    NSLog(@"down");
 }
 
 - (void)mouseDragged:(NSEvent *)theEvent { //not working?
     [self mouseEvent:theEvent];
+    NSLog(@"dragged");
+}
+
+- (void)mouseUp:(NSEvent *)theEvent {
+    [self mouseEvent:theEvent];
+    NSLog(@"up");
 }
 
 @end

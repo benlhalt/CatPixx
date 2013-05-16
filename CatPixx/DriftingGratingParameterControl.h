@@ -14,8 +14,8 @@
 @property double radius;
 @property (strong) NSTrackingArea *trackingArea;
 
-- (void)mouseEvent:(NSEvent *)theEvent;
-
-- (void)mouseMoved:(NSEvent *)theEvent;
+//- (void)mouseEvent:(NSEvent *)theEvent;
+//
+//- (void)mouseMoved:(NSEvent *)theEvent;
 
 @end
