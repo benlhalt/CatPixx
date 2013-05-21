@@ -4,7 +4,7 @@
 //
 //  Created by Ben Halterman on 4/26/13.
 //  Copyright (c) 2013 Ben Halterman. All rights reserved.
-//
+//  Ben Halterman sucks really hard and doesn't know how to comment his code properly
 
 #import "GLProgram.h"
 #import "StimulusView.h"
