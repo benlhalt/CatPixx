@@ -8,14 +8,16 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface DriftingGratingParameterControl : NSControl
+@interface DriftingGratingParameterControl : NSControl {
+    NSRect _square;
+    NSBezierPath *_circlePath;
+    BOOL _frozen;
+}
 
 @property double theta;
 @property double radius;
+@property double apertureRadius;
+@property double temporalFrequency;
 @property (strong) NSTrackingArea *trackingArea;
-
-//- (void)mouseEvent:(NSEvent *)theEvent;
-//
-//- (void)mouseMoved:(NSEvent *)theEvent;
 
 @end

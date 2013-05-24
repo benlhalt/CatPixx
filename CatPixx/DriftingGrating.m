@@ -25,25 +25,25 @@
     if (self) {
         [self setUniformKey:@"contrast" withValue:@1.0];
         [self setUniformKey:@"center" withValue:@[@0.0, @0.0]];
-        [self setUniformKey:@"radius" withValue:@0.5];
+        [self setUniformKey:@"radius" withValue:@1.5];
         [self setUniformKey:@"orientation" withValue:@(0*M_PI)];
         [self setUniformKey:@"spatialFrequency" withValue:@20.0];
         [self setUniformKey:@"phase" withValue:@0.0];
         _temporalFrequency = 2.0;
-        _tZero = 0;
-        _startTimeisSet = NO;
+        _lastDrawTime = 0;
     }
     return self;
 }
 
 - (void)updateScreenForTime:(const CVTimeStamp *)outputTimeStamp {
-    if (!_startTimeisSet) {
-        _startTimeisSet = YES;
-        _tZero = outputTimeStamp->videoTime;
+    if (_lastDrawTime == 0) {
+        _phase = 0.0;
+    }  else {
+        float timeSinceLastDraw = ((double)(outputTimeStamp->videoTime - _lastDrawTime))/((double)(outputTimeStamp->videoTimeScale));
+        _phase = fmod(_phase + 2.0 * M_PI * timeSinceLastDraw * self.temporalFrequency, 2.0 * M_PI);
+        ((GLUniformAttribute *)(self.uniformAttributes[@"phase"])).value = [NSNumber numberWithFloat:_phase];
     }
-    float timeSinceStart = ((double)(outputTimeStamp->videoTime - _tZero))/((double)(outputTimeStamp->videoTimeScale));
-    float phase = 2.0 * M_PI * fmod(timeSinceStart, 1.0/self.temporalFrequency) * self.temporalFrequency;
-    ((GLUniformAttribute *)(self.uniformAttributes[@"phase"])).value = [NSNumber numberWithFloat:phase];
+    _lastDrawTime = outputTimeStamp->videoTime;
     [super updateScreenForTime:outputTimeStamp];
 }
 

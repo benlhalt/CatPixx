@@ -9,8 +9,8 @@
 #import "Stimulus.h"
 
 @interface DriftingGrating : Stimulus {
-    int64_t _tZero;
-    BOOL _startTimeisSet;
+    int64_t _lastDrawTime;
+    double _phase;
 }
 
 @property float contrast;
